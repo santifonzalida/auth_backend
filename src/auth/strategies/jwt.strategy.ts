@@ -8,9 +8,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(config: ConfigService) {
     const secret = config.get<string>('JWT_SECRET');
 
-    if (!secret) {
-      throw new Error('JWT_SECRET no encontrada en las variables de entorno');
-    }
+    console.log('--- DEBUG JWT_SECRET ---');
+    console.log('Valor obtenido:', secret);
+    console.log('Tipo de valor:', typeof secret);
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: config.get<string>('JWT_SECRET'),
