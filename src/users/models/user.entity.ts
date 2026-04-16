@@ -28,6 +28,12 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  nombre: string;
+
+  @Column()
+  apellido: string;
+
   @Column({ default: true })
   isActive: boolean;
 

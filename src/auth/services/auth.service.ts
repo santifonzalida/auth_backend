@@ -42,6 +42,8 @@ export class AuthService {
     const payload = {
       sub: user.id,
       email: user.email,
+      nombre: user.nombre,
+      apellido: user.apellido,
       roles: user.roles.map((r) => r.name),
       permissions: uniquePermissions,
     };

@@ -36,6 +36,8 @@ export class AuthController {
       properties: {
         email: { type: 'string', example: 'user@example.com' },
         password: { type: 'string', example: 'password123' },
+        nombre: { type: 'string', example: 'Juan Pérez' },
+        apellido: { type: 'string', example: 'García' },
       },
     },
   })
@@ -46,8 +48,11 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  @ApiResponse({ status: 200, description: 'Usuario registrado exitosamente' })
-  @ApiResponse({ status: 400, description: 'Email ya está en uso' })
+  @ApiResponse({ status: 200, description: 'Inicio de sesión exitoso' })
+  @ApiResponse({
+    status: 400,
+    description: 'Error al iniciar sesión. Verifica tus credenciales.',
+  })
   @ApiBody({
     schema: {
       type: 'object',
