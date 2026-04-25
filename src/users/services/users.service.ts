@@ -67,7 +67,7 @@ export class UsersService {
       relations: ['roles', 'roles.permissions'], // Carga roles y permisos asociados
     });
     if (!user) {
-      throw new NotFoundException('User not found');
+      return null;
     }
     return user;
   }
