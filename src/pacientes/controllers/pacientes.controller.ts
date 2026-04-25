@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -10,6 +12,7 @@ import { AuthGuard } from '@nestjs/passport';
 import {
   ApiBearerAuth,
   ApiOperation,
+  ApiParam,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -41,5 +44,16 @@ export class PacientesController {
   @ApiResponse({ status: 403, description: 'Rol insuficiente' })
   create(@Body() dto: CreatePacienteDto) {
     return this.pacientesService.create(dto);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Obtener un paciente por ID' })
+  @ApiParam({ name: 'id', description: 'UUID del paciente', example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' })
+  @ApiResponse({ status: 200, description: 'Paciente encontrado' })
+  @ApiResponse({ status: 404, description: 'Paciente no encontrado' })
+  @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
+  @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  findById(@Param('id') id: string) {
+    return this.pacientesService.findById(id);
   }
 }
