@@ -16,6 +16,10 @@ export class ReportesService {
     return this.repo.save(reporte);
   }
 
+  async findAll(): Promise<Reporte[]> {
+    return this.repo.find();
+  }
+
   async findById(id: string): Promise<Reporte> {
     const reporte = await this.repo.findOne({ where: { id } });
     if (!reporte) {

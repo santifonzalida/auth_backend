@@ -46,6 +46,15 @@ export class TutoresController {
     return this.tutoresService.create(dto);
   }
 
+  @Get()
+  @ApiOperation({ summary: 'Obtener todos los tutores' })
+  @ApiResponse({ status: 200, description: 'Lista de tutores' })
+  @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
+  @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  findAll() {
+    return this.tutoresService.findAll();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un tutor por ID' })
   @ApiParam({ name: 'id', description: 'UUID del tutor', example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' })

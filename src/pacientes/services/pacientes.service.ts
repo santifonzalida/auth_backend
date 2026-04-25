@@ -22,6 +22,10 @@ export class PacientesService {
     return this.repo.save(paciente);
   }
 
+  async findAll(): Promise<Paciente[]> {
+    return this.repo.find();
+  }
+
   async findById(id: string): Promise<Paciente> {
     const paciente = await this.repo.findOne({ where: { id } });
     if (!paciente) {

@@ -32,6 +32,10 @@ export class ProfesionalesService {
     return this.repo.save(profesional);
   }
 
+  async findAll(): Promise<Profesional[]> {
+    return this.repo.find();
+  }
+
   async findById(id: string): Promise<Profesional> {
     const profesional = await this.repo.findOne({ where: { id } });
     if (!profesional) {

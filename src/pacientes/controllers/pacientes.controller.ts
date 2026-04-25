@@ -46,6 +46,15 @@ export class PacientesController {
     return this.pacientesService.create(dto);
   }
 
+  @Get()
+  @ApiOperation({ summary: 'Obtener todos los pacientes' })
+  @ApiResponse({ status: 200, description: 'Lista de pacientes' })
+  @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
+  @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  findAll() {
+    return this.pacientesService.findAll();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un paciente por ID' })
   @ApiParam({ name: 'id', description: 'UUID del paciente', example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' })

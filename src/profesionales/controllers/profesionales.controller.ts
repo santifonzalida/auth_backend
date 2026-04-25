@@ -46,6 +46,15 @@ export class ProfesionalesController {
     return this.profesionalesService.create(dto);
   }
 
+  @Get()
+  @ApiOperation({ summary: 'Obtener todos los profesionales' })
+  @ApiResponse({ status: 200, description: 'Lista de profesionales' })
+  @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
+  @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  findAll() {
+    return this.profesionalesService.findAll();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un profesional por ID' })
   @ApiParam({ name: 'id', description: 'UUID del profesional', example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' })

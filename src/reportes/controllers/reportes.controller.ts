@@ -46,6 +46,15 @@ export class ReportesController {
     return this.reportesService.create(dto);
   }
 
+  @Get()
+  @ApiOperation({ summary: 'Obtener todos los reportes' })
+  @ApiResponse({ status: 200, description: 'Lista de reportes' })
+  @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
+  @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  findAll() {
+    return this.reportesService.findAll();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un reporte por ID' })
   @ApiParam({ name: 'id', description: 'UUID del reporte', example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' })

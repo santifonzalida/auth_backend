@@ -22,6 +22,10 @@ export class TutoresService {
     return this.repo.save(tutor);
   }
 
+  async findAll(): Promise<Tutor[]> {
+    return this.repo.find();
+  }
+
   async findById(id: string): Promise<Tutor> {
     const tutor = await this.repo.findOne({ where: { id } });
     if (!tutor) {

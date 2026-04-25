@@ -47,6 +47,15 @@ export class SalasController {
     return this.salasService.create(dto);
   }
 
+  @Get()
+  @ApiOperation({ summary: 'Obtener todas las salas' })
+  @ApiResponse({ status: 200, description: 'Lista de salas' })
+  @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
+  @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  findAll() {
+    return this.salasService.findAll();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obtener una sala por ID' })
   @ApiParam({ name: 'id', description: 'ID numérico de la sala', example: 1 })

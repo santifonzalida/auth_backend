@@ -22,6 +22,10 @@ export class SalasService {
     return this.repo.save(sala);
   }
 
+  async findAll(): Promise<Sala[]> {
+    return this.repo.find();
+  }
+
   async findById(id: number): Promise<Sala> {
     const sala = await this.repo.findOne({ where: { id } });
     if (!sala) {
