@@ -5,6 +5,11 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { RolesModule } from './roles/roles.module';
 import { PermissionsModule } from './permissions/permissions.module';
+import { PacientesModule } from './pacientes/pacientes.module';
+import { ProfesionalesModule } from './profesionales/profesionales.module';
+import { TutoresModule } from './tutores/tutores.module';
+import { SalasModule } from './salas/salas.module';
+import { ReportesModule } from './reportes/reportes.module';
 
 @Module({
   imports: [
@@ -25,6 +30,11 @@ import { PermissionsModule } from './permissions/permissions.module';
     AuthModule,
     RolesModule,
     PermissionsModule,
+    PacientesModule,
+    ProfesionalesModule,
+    TutoresModule,
+    SalasModule,
+    ReportesModule,
   ],
   controllers: [],
   providers: [],
