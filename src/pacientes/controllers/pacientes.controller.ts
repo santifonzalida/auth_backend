@@ -24,7 +24,6 @@ import { PacientesService } from '../services/pacientes.service';
 @ApiTags('Pacientes')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'), RolesGuard)
-@Roles('ADMIN')
 @Controller('pacientes')
 export class PacientesController {
   constructor(private readonly pacientesService: PacientesService) {}
@@ -42,6 +41,7 @@ export class PacientesController {
   })
   @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
   @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  @Roles('ADMIN')
   create(@Body() dto: CreatePacienteDto) {
     return this.pacientesService.create(dto);
   }
@@ -51,6 +51,7 @@ export class PacientesController {
   @ApiResponse({ status: 200, description: 'Lista de pacientes' })
   @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
   @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  @Roles('ADMIN', 'USER')
   findAll() {
     return this.pacientesService.findAll();
   }
@@ -62,6 +63,7 @@ export class PacientesController {
   @ApiResponse({ status: 404, description: 'Paciente no encontrado' })
   @ApiResponse({ status: 401, description: 'Token ausente o inválido' })
   @ApiResponse({ status: 403, description: 'Rol insuficiente' })
+  @Roles('ADMIN', 'USER')
   findById(@Param('id') id: string) {
     return this.pacientesService.findById(id);
   }
